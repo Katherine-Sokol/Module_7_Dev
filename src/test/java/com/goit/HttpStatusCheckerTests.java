@@ -12,14 +12,14 @@ class HttpStatusCheckerTests {
     void testThatStatusImageIsGottenCorrectly() throws IOException, InterruptedException {
         HttpStatusChecker httpStatusChecker = new HttpStatusChecker();
         int [] codes = {100, 101, 200, 201, 204, 300, 400, 404, 500, 501};
-        for (int i = 0; i < codes.length; i++) {
-            String url = httpStatusChecker.getStatusImage(codes[i]);
-            Assertions.assertEquals("https://http.cat/" + codes[i] + ".jpg", url);
+        for (int code : codes) {
+            String url = httpStatusChecker.getStatusImage(code);
+            Assertions.assertEquals("https://http.cat/" + code + ".jpg", url);
         }
     }
 
     @Test
-    void testThatExceptionThrowsCorrectly() throws IOException, InterruptedException {
+    void testThatExceptionThrowsCorrectly(){
         HttpStatusChecker httpStatusChecker = new HttpStatusChecker();
         int [] codes = {1000, 2000, -1};
         for (int code : codes) {
